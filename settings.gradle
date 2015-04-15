@@ -1,0 +1,2 @@
+include ':app', ':hd', ':HdStudio'/*, ':sample', ':library'*/
+/*include ':baiduMapsApiDemo'*/

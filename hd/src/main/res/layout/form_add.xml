@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TableRow
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="纬度："/>
+
+      <EditText
+          android:layout_weight="2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/ET_latitude1"
+          android:gravity="center"
+         />
+
+
+
+     </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="经度："/>
+
+        <EditText
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ET_longitude1"
+            android:gravity="center"
+            />
+
+
+
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="采集时间："/>
+
+        <EditText
+            android:layout_weight="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ET_time"
+            android:gravity="center"
+            />
+
+
+
+    </TableRow>
+
+        <Button
+            android:layout_width="265dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="提交"
+            android:onClick="submit"
+            />
+
+
+
+  </TableLayout>
+
+
+
+
+</LinearLayout>
