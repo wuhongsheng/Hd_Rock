@@ -1,2 +1,2 @@
-include ':hd', ':mydemo'/*, ':sample', ':library'*/
+include ':hd', ':HDdemo'/*, ':sample', ':library'*/
 /*include ':baiduMapsApiDemo'*/
