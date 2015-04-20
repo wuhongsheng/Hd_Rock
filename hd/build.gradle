@@ -1,21 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "20"
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+    //useOldManifestMerger true
 
     defaultConfig {
         applicationId "com.example.hd.app"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
     }
-   /* packagingOptions{
-        exclude 'META-INF/LGPL2.1'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-    }*/
+    /* packagingOptions{
+         exclude 'META-INF/LGPL2.1'
+         exclude 'META-INF/LICENSE'
+         exclude 'META-INF/NOTICE'
+     }*/
     buildTypes {
         release {
             minifyEnabled false
@@ -28,9 +29,10 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/locSDK_4.2.jar')
     compile files('libs/BaiduLBS_Android.jar')
-    // compile 'com.esri.arcgis.android:arcgis-android:10.2.5'
-    compile 'com.android.support:appcompat-v7:20.0.0'
+
     compile files('libs/android-async-http-1.4.5.jar')
+    // compile 'com.android.support:support-v13:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.0.0'
 }
 
 /*allprojects {

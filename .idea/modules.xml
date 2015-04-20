@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android_WorkSpace.iml" filepath="$PROJECT_DIR$/Android_WorkSpace.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HdStudio/HdStudio.iml" filepath="$PROJECT_DIR$/HdStudio/HdStudio.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hd_Rock.iml" filepath="$PROJECT_DIR$/Hd_Rock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mydemo/Hddemo.iml" filepath="$PROJECT_DIR$/mydemo/Hddemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/hd/hd.iml" filepath="$PROJECT_DIR$/hd/hd.iml" />
     </modules>
   </component>
