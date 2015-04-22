@@ -97,6 +97,12 @@
             android:layout_weight="1"
             android:layout_width="0dp" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="带checkbox的listview"
+        android:onClick="signin" />
     <!--  <com.dd.processbutton.iml.ActionProcessButton
              android:id="@+id/btnSignIn"
              android:layout_width="match_parent"

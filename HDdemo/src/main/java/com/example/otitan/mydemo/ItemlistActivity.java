@@ -39,7 +39,25 @@ public class ItemlistActivity extends ActionBarActivity {
         lv.setAdapter(lAdapter);
         // 绑定listView的监听器
         // lv.setItemChecked(position, value)
+        // 取消按钮的回调接口
+        bt_cancel.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // 遍历list的长度，将已选的按钮设为未选
+                for (int i = 0; i < list.size(); i++) {
+                    if (lAdapter.getIsSelected().get(i)) {
+                        lAdapter.getIsSelected().put(i, false);
+                        checkNum--;// 数量减1
+                    }
+                }
+                // 刷新listview和TextView的显示
+                // dataChanged();
+
+            }
+        });
         lv.setOnItemClickListener(new OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
@@ -51,6 +69,7 @@ public class ItemlistActivity extends ActionBarActivity {
                 lAdapter.getIsSelected().put(arg2, holder.cb.isChecked());
                 // 调整选定条目
                 if (holder.cb.isChecked() == true) {
+
                     checkNum++;
                 } else {
                     checkNum--;
