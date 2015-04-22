@@ -46,6 +46,7 @@ public class LocationActivity extends Activity {
         }
     }
     private void InitialLocation() {
+
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);// 设置定位模式
         /**

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hd.wulogin.ItemlistActivity">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:id="@+id/lv"
+        android:layout_weight="1">
+
+    </ListView>
+
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bt_cancel"
+        android:text="取消选择"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+
+        android:id="@+id/tv" />
+
+</LinearLayout>

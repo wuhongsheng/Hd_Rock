@@ -1,11 +1,11 @@
 package com.example.hd.app;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +14,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption.LocationMode;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
@@ -24,13 +29,6 @@ import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
-/*定位*/
-import com.baidu.location.LocationClientOption.LocationMode;
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
-//如果使用地理围栏功能，需要import如下类
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.OverlayOptions;
@@ -44,8 +42,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/*定位*/
+//如果使用地理围栏功能，需要import如下类
 
-public class MainActivity extends Activity  {
+
+public class MainActivity extends ActionBarActivity {
     public MapView Bdmapview=null;
     private BaiduMap map;
     private long exitTime = 0;
@@ -55,7 +56,7 @@ public class MainActivity extends Activity  {
     private double latitude=32.270115;
     private double longtitude=118.306446;
 
-    public LocationClient mLocationClient = null;
+    private LocationClient mLocationClient;
     public BDLocationListener myListener = new MyLocationListener();
 
     private Button bt_add;
@@ -105,9 +106,8 @@ public class MainActivity extends Activity  {
                 Toast.makeText(getApplicationContext(), "添加成功", Toast.LENGTH_SHORT).show();
             case 4:
                // setIntent(new Intent(this,LocationActivity.class));
-              /*  Intent intent=new Intent();
-                setIntent(LocationActivity.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(MainActivity.this, LocationActivity.class);
+                startActivity(intent);
                 //map.hideInfoWindow();
 
         }
@@ -376,8 +376,9 @@ public class MainActivity extends Activity  {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (index == 0) {
-
-                    Toast.makeText(getApplicationContext(), "上传数据成功", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, ItemlistActivity.class);
+                    startActivity(intent);
+                    //Toast.makeText(getApplicationContext(), "上传数据成功", Toast.LENGTH_SHORT).show();
                 } else if (index == 1) {
                     Intent intent = new Intent(MainActivity.this, UploadActivity.class);
                     startActivity(intent);
@@ -437,8 +438,13 @@ public class MainActivity extends Activity  {
     private class MyLocationListener implements BDLocationListener {
         @Override
                 public void onReceiveLocation(BDLocation location) {
-                  latitude =location.getLatitude();
+            if (location == null) {
+                Toast.makeText(MainActivity.this, "定位失败", Toast.LENGTH_LONG).show();
+            } else {
+                latitude = location.getLatitude();
                 longtitude =location.getLongitude();
+            }
+
             /*  StringBuffer sb=new StringBuffer();
              sb.append("纬度"+location.getLatitude());
              sb.append("纬度"+location.getLongitude());
