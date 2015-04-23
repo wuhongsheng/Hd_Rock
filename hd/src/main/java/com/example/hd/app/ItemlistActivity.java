@@ -19,7 +19,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +84,7 @@ public class ItemlistActivity extends ActionBarActivity {
                 if (uprocks != null) {
                     Document doc = WriteXML();
                     doc.getBaseURI();
-                    File file = new File();
+                    //File file = new File();
 
                     String url = "http://192.168.0.101:8080/RockServers/RockServlet";
                     FileUpload fu = new FileUpload();
