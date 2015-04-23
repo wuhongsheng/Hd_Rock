@@ -9,13 +9,17 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.hd.app.R;
+import com.hd.rock.dao.Rock;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ListviewAdapter extends BaseAdapter {
     // 填充数据的list
     private ArrayList<String> list;
+    //数据
+    private List<Rock> rocks;
     // 用来控制CheckBox的选中状况
     private static HashMap<Integer, Boolean> isSelected;
     // 上下文
@@ -30,11 +34,21 @@ public class ListviewAdapter extends BaseAdapter {
         inflater = LayoutInflater.from(context);
         isSelected = new HashMap<Integer, Boolean>();
         // 初始化数据
-        initDate();
+        initData();
     }
 
-    private void initDate() {
-        for (int i = 0; i < list.size(); i++) {
+    public ListviewAdapter(List<Rock> rocks, Context context) {
+        this.context = context;
+        this.rocks = rocks;
+        inflater = LayoutInflater.from(context);
+        isSelected = new HashMap<Integer, Boolean>();
+        // 初始化数据
+        initData();
+    }
+
+
+    private void initData() {
+        for (int i = 0; i < rocks.size(); i++) {
             getIsSelected().put(i, false);
         }
     }
@@ -42,13 +56,13 @@ public class ListviewAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return list.size();
+        return rocks.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return list.get(position);
+        return rocks.get(position);
     }
 
     @Override
@@ -76,7 +90,8 @@ public class ListviewAdapter extends BaseAdapter {
 
 
         // 设置list中TextView的显示
-        holder.tv.setText(list.get(position));
+        //Rock rock=rocks.get(position);
+        holder.tv.setText(rocks.get(position).getTime().toString() + "岩石样本");
         // 根据isSelected来设置checkbox的选中状况
         holder.cb.setChecked(getIsSelected().get(position));
         return convertView;

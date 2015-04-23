@@ -14,19 +14,27 @@
 
     </ListView>
 
-    <Button
-
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:id="@+id/bt_cancel"
-        android:text="取消选择"
-
-        />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="30dp"
 
         android:id="@+id/tv" />
+    <!-- <Button
+
+         android:layout_width="fill_parent"
+         android:layout_height="50dp"
+         android:id="@+id/bt_cancel"
+         android:text="取消选择"
+
+         />-->
+    <Button
+
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:id="@+id/bt_upload"
+        android:text="取消选择"
+
+        />
+
 
 </LinearLayout>

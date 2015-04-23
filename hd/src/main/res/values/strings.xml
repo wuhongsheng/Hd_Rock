@@ -13,5 +13,6 @@
     <string name="title_activity_add">添加数据</string>
     <string name="title_activity_main_activity2">MainActivity2</string>
     <string name="title_activity_serch__magnetism">磁性查询</string>
+    <string name="title_activity_uplod">上传数据</string>
 
 </resources>

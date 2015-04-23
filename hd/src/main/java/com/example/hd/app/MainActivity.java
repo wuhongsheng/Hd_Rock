@@ -35,7 +35,13 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.hd.rock.dao.Rock;
 import com.hd.rock.dao.rockdao;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
+import org.apache.http.Header;
+
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -376,12 +382,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (index == 0) {
-                    Intent intent = new Intent(MainActivity.this, ItemlistActivity.class);
-                    startActivity(intent);
+                    try {
+                        //上传所有数据
+                        UploadAlldata();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     //Toast.makeText(getApplicationContext(), "上传数据成功", Toast.LENGTH_SHORT).show();
                 } else if (index == 1) {
-                    Intent intent = new Intent(MainActivity.this, UploadActivity.class);
+                    //选择上传数据
+                    Intent intent = new Intent(MainActivity.this, ItemlistActivity.class);
                     startActivity(intent);
+                 /*   Intent intent = new Intent(MainActivity.this, UploadActivity.class);
+                    startActivity(intent);*/
                 }
             }
 
@@ -453,6 +466,35 @@ public class MainActivity extends ActionBarActivity {
 
 
         }
+    }
+
+    public void UploadAlldata() throws FileNotFoundException {
+
+        File file = new File("/sdcard/test.db");
+        if (file.exists() && file.length() > 0) {
+            AsyncHttpClient asclient = new AsyncHttpClient();
+            String url = "http://192.168.0.101:8080/RockServers/RockServlet";
+            RequestParams params = new RequestParams();
+            params.put("db", file);
+            String username = "wu";
+            params.put("username", username);
+            asclient.post(url, params, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                    Toast.makeText(MainActivity.this, "上传成功", Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                    Toast.makeText(MainActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            Toast.makeText(MainActivity.this, "文件不存在或数据为空", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 }
