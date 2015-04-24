@@ -29,10 +29,11 @@
          />-->
     <Button
 
-        android:layout_width="fill_parent"
+        android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
         android:id="@+id/bt_upload"
-        android:text="取消选择"
+        android:text="上传"
 
         />
 

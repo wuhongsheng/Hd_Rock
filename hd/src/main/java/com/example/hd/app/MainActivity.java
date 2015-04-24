@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.FileUpload;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -35,11 +36,6 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.hd.rock.dao.Rock;
 import com.hd.rock.dao.rockdao;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-
-import org.apache.http.Header;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,8 +55,8 @@ public class MainActivity extends ActionBarActivity {
     private int index=0;
 
     // private TextView editText;
-    private double latitude=32.270115;
-    private double longtitude=118.306446;
+    private double latitude;
+    private double longtitude;
 
     private LocationClient mLocationClient;
     public BDLocationListener myListener = new MyLocationListener();
@@ -471,8 +467,11 @@ public class MainActivity extends ActionBarActivity {
     public void UploadAlldata() throws FileNotFoundException {
 
         File file = new File("/sdcard/test.db");
+        String url = "http://192.168.0.101:8080/RockServers/RockServlet";
         if (file.exists() && file.length() > 0) {
-            AsyncHttpClient asclient = new AsyncHttpClient();
+            FileUpload fu = new FileUpload();
+            fu.UpLoad(url, file, this);
+          /*  AsyncHttpClient asclient = new AsyncHttpClient();
             String url = "http://192.168.0.101:8080/RockServers/RockServlet";
             RequestParams params = new RequestParams();
             params.put("db", file);
@@ -489,7 +488,8 @@ public class MainActivity extends ActionBarActivity {
                 public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                     Toast.makeText(MainActivity.this, "上传失败", Toast.LENGTH_SHORT).show();
                 }
-            });
+            });*/
+
         } else {
             Toast.makeText(MainActivity.this, "文件不存在或数据为空", Toast.LENGTH_SHORT).show();
         }

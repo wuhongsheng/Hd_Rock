@@ -70,7 +70,11 @@ public class rockdao {
         return rocks;
     }
 
-
+    public void Delete() {
+        SQLiteDatabase db = helper.getReadableDatabase();
+        db.delete("C_ROCK_SAMPLE", null, null);
+        db.close();
+    }
  /*   public   FindAll()
     {
         SQLiteDatabase db= helper.getReadableDatabase();

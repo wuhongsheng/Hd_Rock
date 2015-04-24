@@ -1,7 +1,7 @@
 package com.example.hd.app;
 
 import android.os.Bundle;
-import android.renderscript.Element;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,20 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.FileUpload;
+import com.SerializerXml;
 import com.hd.rock.dao.Rock;
 import com.hd.rock.dao.rockdao;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.Text;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import Adapter.ListviewAdapter;
 
@@ -44,7 +38,7 @@ public class ItemlistActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itemlist);
         lv = (ListView) findViewById(R.id.lv);
-        bt_cancel = (Button) findViewById(R.id.bt_cancel);
+        //bt_cancel = (Button) findViewById(R.id.bt_cancel);
         bt_upload = (Button) findViewById(R.id.bt_upload);
         tv_show = (TextView) findViewById(R.id.tv);
         rockdao dao = new rockdao(this);
@@ -82,10 +76,10 @@ public class ItemlistActivity extends ActionBarActivity {
 
                 uprocks = GetRocks();
                 if (uprocks != null) {
-                    Document doc = WriteXML();
-                    doc.getBaseURI();
-                    //File file = new File();
-
+                    SerializerXml sm = new SerializerXml();
+                    sm.createUpRocksXml(uprocks);
+                    // Document doc = WriteXML();
+                    File file = new File(Environment.getExternalStorageDirectory(), "uprocks.xml");
                     String url = "http://192.168.0.101:8080/RockServers/RockServlet";
                     FileUpload fu = new FileUpload();
                     try {
@@ -113,7 +107,7 @@ public class ItemlistActivity extends ActionBarActivity {
                 // 将CheckBox的选中状况记录下来
                 lAdapter.getIsSelected().put(arg2, holder.cb.isChecked());
                 // 调整选定条目
-                if (holder.cb.isChecked() == true) {
+                if (holder.cb.isChecked()) {
 
                     checkNum++;
                 } else {
@@ -154,40 +148,5 @@ public class ItemlistActivity extends ActionBarActivity {
         }
         return uprocks;
     }
-
-    private Document WriteXML() {
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = null;
-        try {
-            db = dbf.newDocumentBuilder();
-        } catch (ParserConfigurationException pce) {
-            System.err.println(pce);
-            System.exit(1);
-        }
-        Document doc = db.newDocument();
-        Element root = (Element) doc.createElement("Rocks");
-        doc.appendChild((Node) root);
-        for (int i = 0; i < uprocks.size(); i++) {
-            Rock rock = uprocks.get(i);
-            Element Rock = (Element) doc.createElement("Rock");
-            ((Node) root).appendChild((Node) Rock);
-            Element time = (Element) doc.createElement("时间");
-            ((Node) Rock).appendChild((Node) time);
-            Text tTime = doc.createTextNode(rock.getTime());
-            ((Node) time).appendChild(tTime);
-            Element longitude = (Element) doc.createElement("经度");
-            ((Node) Rock).appendChild((Node) longitude);
-            Text tLongitude = doc.createTextNode(rock.getLongitude());
-            ((Node) longitude).appendChild(tLongitude);
-            Element latitude = (Element) doc.createElement("纬度");
-            ((Node) Rock).appendChild((Node) latitude);
-            Text tLatitude = doc.createTextNode(rock.getLatitude());
-            ((Node) latitude).appendChild(tLatitude);
-
-
-        }
-        return doc;
-    }
-
 
 }
